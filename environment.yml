@@ -1,0 +1,19 @@
+name: drone-damage-assessment
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pytorch=1.13.1         # adjust the version as needed; if you have a GPU, ensure you have the correct cudatoolkit version
+  - cudatoolkit=11.8       # remove or change if using CPU-only
+  - torchvision
+  - matplotlib
+  - scikit-learn
+  - pillow
+  - numpy
+  - pip
+  - pip:
+      - transformers
+      - requests
+
