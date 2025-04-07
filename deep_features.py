@@ -84,7 +84,6 @@ def merge_nodes(raw_nodes):
             'damage_state': merged_damage,
             'num_stories': ns_mode,
             'annotation_effort': merged_effort,
-            # Use first mask & frame for reference; in practice, you can pick differently
             'mask_filename': data['mask_filenames'][0],
             'frame': data['frames'][0]
         })
@@ -197,10 +196,10 @@ def build_node_features(
         
         annotation_effort = node['annotation_effort'] if node['annotation_effort'] is not None else 0.0
         meta = torch.tensor([float(node['num_stories']), float(annotation_effort)])
-        # Also ensure meta is 1D
+        # Ensure meta is 1D
         meta = meta.view(-1)
         
-        # Now both visual_feat and meta are 1D => safe to concatenate
+        # visual_feat and meta are 1D => safe to concatenate
         node_feat = torch.cat([visual_feat, meta], dim=0)
         
         node_features.append(node_feat)
